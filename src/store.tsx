@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type Product = {
+export type Product = {
   id: number;
   name: string;
   price: number;
@@ -28,7 +28,7 @@ export const useInventoryStore = create<StoreState>((set, get) => ({
   updateStock: (id, quantity) =>
     set((state) => ({
       products: state.products.map((product) =>
-        product.id === id ? { ...product, stock: product.stock + quantity } : product
+        product.id === id ? { ...product, stock: Number(product.stock) + Number(quantity) } : product
       ),
     })),
   totalValue: () =>

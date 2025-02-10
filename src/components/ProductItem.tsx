@@ -1,9 +1,9 @@
 // import { useInventoryStore } from '../store';
 
-import { useInventoryStore } from "../store";
+import { Product, useInventoryStore } from "../store";
 
-const ProductItem = ({ product }) => {
-  const { updateStock, removeProduct } = useInventoryStore();
+const ProductItem = ({ product }: { product: Product }) => {  
+    const { updateStock, removeProduct } = useInventoryStore();
 
   return (
     <li>

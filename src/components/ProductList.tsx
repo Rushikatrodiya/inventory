@@ -1,24 +1,20 @@
-// import { useInventoryStore } from '../store';
-import { useInventoryStore } from '../store';
+// import { useInventoryStore } from "../store/inventoryStore";
+import { useInventoryStore } from "../store";
+import ProductItem from "./ProductItem";
 
 const ProductList = () => {
-  const products = useInventoryStore((state) => state.products); // ✅ Ensure reactivity
-  const totalValue = useInventoryStore((state) => state.totalValue);
+  const products = useInventoryStore((state) => state.products);
+  const { totalValue} = useInventoryStore()
 
   return (
-    <div>
-      <h2>Inventory List</h2>
-      {products.length === 0 ? <p>No products in inventory.</p> : (
-        <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              {product.name} - ${product.price} | Stock: {product.stock}
-            </li>
-          ))}
-        </ul>
-      )}
-      <h3>Total Inventory Value: ${totalValue()}</h3>
-    </div>
+    <>
+    <ul>
+      {products.map((product) => (
+        <ProductItem key={product.id} product={product} />
+      ))}
+    </ul>
+          <h3>Total Inventory Value: ${totalValue()}</h3>
+          </>
   );
 };
 

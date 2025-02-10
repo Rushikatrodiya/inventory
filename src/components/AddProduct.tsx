@@ -7,7 +7,7 @@ const AddProduct = () => {
   const [stock, setStock] = useState('');
   const addProduct = useInventoryStore((state) => state.addProduct);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!name || !price || !stock) {
@@ -18,8 +18,8 @@ const AddProduct = () => {
     addProduct({
       id: Date.now(),
       name,
-      price: Number(price),
-      stock: Number(stock),
+      price,
+      stock,
     });
 
     // ✅ Force React to update by resetting state
